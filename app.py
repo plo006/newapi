@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, send_from_directory
 import brain
 import os
 
@@ -6,7 +6,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def home():
-    return "✅ Chatbot API is running!"
+    return send_from_directory('.', 'index.html')  # Serve the HTML
 
 @app.route('/chat', methods=['POST'])
 def chat():
@@ -21,5 +21,4 @@ def chat():
         return jsonify({"error": str(e)}), 500
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=3000)
-
+    app.run(debug=True, port=3000)
