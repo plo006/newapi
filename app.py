@@ -1,8 +1,12 @@
 from flask import Flask, request, jsonify, send_from_directory
+from flask_cors import CORS  # Import CORS
 import brain
 import os
 
 app = Flask(__name__)
+
+# Enable CORS for all routes
+CORS(app)
 
 @app.route('/')
 def home():
